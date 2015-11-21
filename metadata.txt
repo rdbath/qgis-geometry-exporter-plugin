@@ -1,0 +1,40 @@
+# This file contains metadata for your plugin. Since 
+# version 2.0 of QGIS this is the proper way to supply 
+# information about a plugin. The old method of 
+# embedding metadata in __init__.py will 
+# is no longer supported since version 2.0.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=Geometry Exporter
+qgisMinimumVersion=2.0
+description=Export geometry to WKT, EWKT, GML2, GML3, GeoJSON...
+version=0.5
+author=Juergen Weichand
+email=juergen@weichand.de
+
+about=Export geometry to WKT, EWKT, GML2, GML3, GeoJSON...
+
+tracker=http://www.github.com/JuergenWeichand/qgis-geometry-exporter-plugin/issues
+repository=http://www.github.com/JuergenWeichand/qgis-geometry-exporter-plugin
+# End of mandatory metadata
+
+# Recommended items:
+
+# Uncomment the following line and add your changelog:
+# changelog=
+
+# Tags are comma separated with spaces allowed
+tags=WKT, EWKT, GML, GeoJSON
+
+homepage=http://www.weichand.de
+category=Vector
+icon=icon.png
+
+# experimental flag
+experimental=True
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
