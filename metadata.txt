@@ -9,12 +9,12 @@
 [general]
 name=Geometry Exporter
 qgisMinimumVersion=2.0
-description=Export geometry to WKT, EWKT, GML2, GML3, GeoJSON...
-version=0.5
+description=The plugin displays the geometry of a selected feature as text. Supported formats: WKT, EWKT, GML2, GML3 and GeoJSON.
+version=0.5.1
 author=Juergen Weichand
 email=juergen@weichand.de
 
-about=Export geometry to WKT, EWKT, GML2, GML3, GeoJSON...
+about=The plugin displays the geometry of a selected feature as text. The following formats are currently supported: WKT, EWKT, GML2, GML3, GeoJSON. Also adhoc conversion (e. g. Envelope, Centroid, ConvexHull, Boundary) and transformation (changing Coordinate Reference System) are supported.
 
 tracker=http://www.github.com/JuergenWeichand/qgis-geometry-exporter-plugin/issues
 repository=http://www.github.com/JuergenWeichand/qgis-geometry-exporter-plugin

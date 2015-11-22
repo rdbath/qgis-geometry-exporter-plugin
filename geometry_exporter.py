@@ -193,7 +193,7 @@ class GeometryExporter:
 
 
     def about(self):
-        infoString = "<table><tr><td colspan=\"2\"><b>Geometry Exporter 0.5 - beta</b></td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Author:</td><td>J&uuml;rgen Weichand</td></tr><tr><td>Mail:</td><td><a href=\"mailto:juergen@weichand.de\">juergen@weichand.de</a></td></tr><tr><td>Website:</td><td><a href=\"http://www.weichand.de\">http://www.weichand.de</a></td></tr></table>"
+        infoString = "<table><tr><td colspan=\"2\"><b>Geometry Exporter 0.5.1 - beta</b></td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Author:</td><td>J&uuml;rgen Weichand</td></tr><tr><td>Mail:</td><td><a href=\"mailto:juergen@weichand.de\">juergen@weichand.de</a></td></tr><tr><td>Website:</td><td><a href=\"http://www.weichand.de\">http://www.weichand.de</a></td></tr></table>"
         QMessageBox.information(self.iface.mainWindow(), "About Geometry Exporter", infoString)
 
     def run(self):
@@ -244,15 +244,7 @@ class GeometryExporter:
 
             geom = ogr.CreateGeometryFromWkt(wkt)
 
-            if self.dlg.cmbConversion.currentText() == 'Envelope':
-                geom = self.compute_envelope(geom)
-            if self.dlg.cmbConversion.currentText() == 'Centroid':
-                geom = geom.Centroid()
-            if self.dlg.cmbConversion.currentText() == 'Boundary':
-                geom = geom.GetBoundary()
-            if self.dlg.cmbConversion.currentText() == 'ConvexHull':
-                geom = geom.ConvexHull()
-
+            # transformation
             if qgscrs.postgisSrid() > 0:
 
                 # Transformation using OGR
@@ -265,6 +257,16 @@ class GeometryExporter:
 
                 transform = osr.CoordinateTransformation(source, target)
                 geom.Transform(transform)
+
+            # conversion
+            if self.dlg.cmbConversion.currentText() == 'Envelope':
+                geom = self.compute_envelope(geom)
+            if self.dlg.cmbConversion.currentText() == 'Centroid':
+                geom = geom.Centroid()
+            if self.dlg.cmbConversion.currentText() == 'Boundary':
+                geom = geom.GetBoundary()
+            if self.dlg.cmbConversion.currentText() == 'ConvexHull':
+                geom = geom.ConvexHull()
 
             export = ''
             if self.dlg.cmbFormat.currentText() == 'GML 2':
