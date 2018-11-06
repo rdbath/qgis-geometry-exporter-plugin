@@ -209,6 +209,9 @@ class GeometryExporter:
         if len(layer.selectedFeatures()) != 1:
             QMessageBox.critical(self.dlg, 'Error', u'Please select exactly one feature!')
             return
+        elif layer.selectedFeatures()[0].geometry() is None:
+            QMessageBox.critical(self.dlg, 'Error', u'Feature has no geometry!')
+            return
         else:
             self.dlg.show()
             self.feature = layer.selectedFeatures()[0]
