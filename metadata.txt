@@ -8,7 +8,7 @@
 
 [general]
 name=Geometry Exporter
-qgisMinimumVersion=2.0
+qgisMinimumVersion=3.0
 description=The plugin displays the geometry of a selected feature as text. Supported formats: WKT, EWKT, GML2, GML3 and GeoJSON.
 version=0.5.1
 author=Juergen Weichand

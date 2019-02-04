@@ -20,22 +20,18 @@
  *                                                                         *
  ***************************************************************************/
 """
-from __future__ import absolute_import
-from builtins import str
-from builtins import object
-from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject
-from qgis.PyQt.QtWidgets import QAction, QMessageBox
-from qgis.PyQt.QtGui import QIcon
+from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
+from PyQt4.QtGui import QAction, QIcon, QMessageBox
 from qgis.core import QgsCoordinateTransform, QgsCoordinateReferenceSystem
 # Initialize Qt resources from file resources.py
-from . import resources
+import resources
 # Import the code for the dialog
-from .geometry_exporter_dialog import GeometryExporterDialog
+from geometry_exporter_dialog import GeometryExporterDialog
 from osgeo import gdal, ogr, osr
 import os.path
 
 
-class GeometryExporter(object):
+class GeometryExporter:
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -180,9 +176,9 @@ class GeometryExporter(object):
             add_to_toolbar=None,
             parent=None)
 
-        self.dlg.cmbFormat.currentIndexChanged.connect(self.populate)
-        self.dlg.cmbConversion.currentIndexChanged.connect(self.populate)
-        self.dlg.proj.crsChanged.connect(self.populate)
+        QObject.connect(self.dlg.cmbFormat, SIGNAL("currentIndexChanged(int)"), self.populate)
+        QObject.connect(self.dlg.cmbConversion, SIGNAL("currentIndexChanged(int)"), self.populate)
+        QObject.connect(self.dlg.proj, SIGNAL("crsChanged(QgsCoordinateReferenceSystem)"), self.populate)
 
 
     def unload(self):
@@ -247,7 +243,7 @@ class GeometryExporter(object):
             qgsgeom = self.feature.geometry()
             qgscrs = self.dlg.proj.crs()
 
-            wkt = qgsgeom.asWkt()
+            wkt = qgsgeom.exportToWkt()
 
             geom = ogr.CreateGeometryFromWkt(wkt)
 

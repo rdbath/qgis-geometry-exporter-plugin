@@ -23,13 +23,13 @@
 
 import os
 
-from qgis.PyQt import QtGui, uic
-from qgis.PyQt.QtWidgets import QDialog
+from PyQt4 import QtGui, uic
+
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'geometry_exporter_dialog_base.ui'))
 
 
-class GeometryExporterDialog(QDialog, FORM_CLASS):
+class GeometryExporterDialog(QtGui.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
         super(GeometryExporterDialog, self).__init__(parent)
